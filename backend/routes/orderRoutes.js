@@ -1,33 +1,14 @@
-const express = require("express");
-
+const express = require('express');
 const router = express.Router();
+const orderController = require('../controllers/orderController');
+const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
 
-// Create a new order
-router.post("/", async (req, res, next) => {
-  try {
-    const { customerName, email, shippingAddress, items } = req.body;
+router.post('/', verifyToken, orderController.createOrder);
+router.get('/my-orders', verifyToken, orderController.getUserOrders);
 
-    // Basic validation
-    if (!customerName || !email || !shippingAddress || !items) {
-      return res.status(400).json({
-        error: "Missing required order information",
-      });
-    }
+router.get('/admin/all', verifyToken, isAdmin, orderController.getAllOrders);
+router.patch('/:id/status', verifyToken, isAdmin, orderController.updateOrderStatus);
 
-    // Database logic will go here later
-
-    res.status(201).json({
-      message: "Order created successfully",
-      order: {
-        customerName,
-        email,
-        shippingAddress,
-        items,
-      },
-    });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get('/:id', verifyToken, orderController.getOrderById);
 
 module.exports = router;
