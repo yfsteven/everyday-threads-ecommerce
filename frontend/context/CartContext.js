@@ -6,6 +6,7 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const [cartLoaded, setCartLoaded] = useState(false);
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -13,11 +14,15 @@ export function CartProvider({ children }) {
     if (savedCart) {
       setCartItems(JSON.parse(savedCart));
     }
+
+    setCartLoaded(true);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (cartLoaded) {
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+    }
+  }, [cartItems, cartLoaded]);
 
   function addToCart(product) {
     setCartItems((currentItems) => {

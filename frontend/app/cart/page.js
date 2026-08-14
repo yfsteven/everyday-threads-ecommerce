@@ -13,27 +13,36 @@ export default function CartPage() {
 
     if (cartItems.length === 0) {
         return (
-            <main className="p-8">
-                <h1 className="text-3xl font-bold mb-4">Shopping Cart</h1>
+            <main className="max-w-6xl mx-auto w-full px-6 py-12">
+                <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
 
-                <p className="mb-4">Your cart is empty.</p>
+                <div className="rounded-xl border border-zinc-700 p-10 text-center">
+                    <h2 className="text-2xl font-semibold mb-3">Your cart is empty</h2>
 
-                <Link href="/products" className="underline">
-                    Continue Shopping
-                </Link>
+                    <p className="text-zinc-400 mb-6">
+                        Looks like you haven&apos;t added anything yet.
+                    </p>
+
+                    <Link
+                        href="/products"
+                        className="inline-block rounded-md bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700"
+                    >
+                        Continue Shopping
+                    </Link>
+                </div>
             </main>
         );
     }
 
     return (
-        <main className="p-8">
-            <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
+        <main className="max-w-6xl mx-auto w-full px-6 py-12">
+            <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
 
             <div className="space-y-6">
                 {cartItems.map((item) => (
                     <div
                         key={item.id}
-                        className="border p-4 rounded-lg transition-shadow hover:shadow-lg"
+                        className="border border-zinc-700 p-6 rounded-xl transition-all hover:border-zinc-500 hover:shadow-lg"
                     >
                         <h2 className="text-xl font-semibold">{item.name}</h2>
 
@@ -89,10 +98,16 @@ export default function CartPage() {
                 ))}
             </div>
 
-            <div className="mt-8">
-                <h2 className="text-2xl font-bold">
+            <div className="mt-10 flex flex-col items-start gap-5 border-t border-zinc-700 pt-6">
+                <h2 className="text-3xl font-bold">
                     Total: ${cartTotal.toFixed(2)}
                 </h2>
+                <Link
+                    href="/checkout"
+                    className="inline-block rounded-md bg-blue-600 px-7 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                >
+                    Proceed to Checkout
+                </Link>
             </div>
         </main>
     );
