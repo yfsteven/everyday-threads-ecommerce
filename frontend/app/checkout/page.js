@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "../../context/CartContext";
 
 export default function CheckoutPage() {
+  const { cartItems, cartTotal } = useCart();
+
   const [formData, setFormData] = useState({
     customerName: "",
     email: "",
@@ -18,8 +21,18 @@ export default function CheckoutPage() {
     }));
   }
 
- async function handleSubmit(event) {
+  async function handleSubmit(event) {
   event.preventDefault();
+
+  if (cartItems.length === 0) {
+    console.error("Cart is empty");
+    return;
+  }
+
+  const orderItems = cartItems.map((item) => ({
+    productId: item.id,
+    quantity: item.quantity,
+  }));
 
   try {
     const response = await fetch("http://localhost:5000/api/orders", {
@@ -28,10 +41,9 @@ export default function CheckoutPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        customerName: formData.customerName,
-        email: formData.email,
+        customerEmail: formData.email,
         shippingAddress: formData.shippingAddress,
-        items: [],
+        items: orderItems,
       }),
     });
 
@@ -114,6 +126,12 @@ export default function CheckoutPage() {
                 rows={4}
                 className="w-full rounded-md border border-zinc-300 px-4 py-2"
               />
+            </div>
+
+            <div className="border-t pt-4">
+              <p className="text-lg font-semibold text-zinc-900">
+                Order Total: ${cartTotal.toFixed(2)}
+              </p>
             </div>
 
             <button
