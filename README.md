@@ -2,6 +2,8 @@
 
 ## Team Members
 
+**Noel Madera, Jr.** – I worked on the checkout and order flow for the project. I built the checkout page, connected it to the shopping cart, and added the order confirmation page. On the backend, I added the order route and connected the checkout process to the order system, including order validation and database processing. I also worked with Git/GitHub to manage and integrate my changes with the team project.
+
 **Yan Chao Feng** - I built the backend foundation of the project. Set up the project structure using Next.js for the frontend and Express for the backend, then added error handling and routing. My biggest contribution was building the authentication system, along with role-based permissions and a full product management system. 
 
 ## Getting Started
