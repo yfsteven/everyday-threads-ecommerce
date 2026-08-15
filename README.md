@@ -2,7 +2,7 @@
 
 ## Team Members
 
-Yan Chao Feng - I built the backend foundation of the project. Set up the project structure using Next.js for the frontend and Express for the backend, then added error handling and routing. My biggest contribution was building the authentication system, along with role-based permissions and a full product management system. 
+**Yan Chao Feng** - I built the backend foundation of the project. Set up the project structure using Next.js for the frontend and Express for the backend, then added error handling and routing. My biggest contribution was building the authentication system, along with role-based permissions and a full product management system. 
 
 ## Getting Started
 
