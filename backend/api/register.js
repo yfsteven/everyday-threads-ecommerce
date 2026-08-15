@@ -1,13 +1,13 @@
 // backend/api/register.js
 
-import { Pool } from 'pg';
-import bcrypt from 'bcrypt';
+const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-export default async function handler(req, res) {
+async function handler(req, res) {
     if (req.method === 'POST') {
         const { email, password } = req.body;
 
@@ -38,3 +38,5 @@ export default async function handler(req, res) {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
+
+module.exports = handler;
