@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_URL = "http://localhost:5001/api";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -63,6 +63,7 @@ export default function SignInPage() {
             required
             className="h-11 w-full rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-black focus:ring-2 focus:ring-black/10 dark:border-zinc-700 dark:bg-black dark:text-white dark:focus:border-white"
           />
+
           <input
             type="password"
             placeholder="••••••••"
@@ -95,6 +96,7 @@ export default function SignInPage() {
           >
             Browse as Guest
           </button>
+
           <button
             type="button"
             onClick={() => router.push("/login/signup")}
