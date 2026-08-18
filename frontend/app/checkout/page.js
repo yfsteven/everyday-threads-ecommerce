@@ -55,6 +55,7 @@ export default function CheckoutPage() {
     }
 
     console.log("Order created:", data);
+    window.location.href = "/order-confirmation";
   } catch (error) {
     console.error("Error creating order:", error);
   }
