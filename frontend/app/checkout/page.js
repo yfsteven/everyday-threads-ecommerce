@@ -35,10 +35,11 @@ export default function CheckoutPage() {
   }));
 
   try {
-    const response = await fetch("http://localhost:5000/api/orders", {
+    const response = await fetch("http://localhost:5001/api/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
       },
       body: JSON.stringify({
         customerEmail: formData.email,
